@@ -5,6 +5,8 @@ RSpec.describe Translator do
   let(:dicationary) {Dictionary.new}
 
   describe '#translator' do 
-    expect(translator).to be_a(Translator)
+    it 'exists and has attributes' do 
+      expect(translator).to be_a(Translator)
+    end
   end
 end
