@@ -1,8 +1,9 @@
 class Dictionary 
-   attr_reader :braille_dictionary
+   attr_reader :braille_dictionary, :to_english
 
   def initialize 
     @braille_dictionary = braille_characters 
+    @to_english = english_characters
   end
 
   def braille_characters  
@@ -37,4 +38,7 @@ class Dictionary
     }
   end
 
+  def english_characters 
+    braille_characters.invert
+  end
 end
