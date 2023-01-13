@@ -11,8 +11,8 @@ RSpec.describe Dictionary do
 
   describe '#braille_dictionary and braille_characters' do 
     it 'is initialized with a dictionary of braille characters' do 
-      expect(braille_characters.keys).to include("a", "b", "c", "l", "m", "n")
-      expect(braille_dictionary.class).to be_a(Hash)
+      expect(dictionary.braille_characters.keys).to include("a", "b", "c", "l", "m", "n")
+      expect(dictionary.braille_dictionary).to be_a(Hash)
     end
   end
 end
