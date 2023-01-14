@@ -38,4 +38,17 @@ RSpec.describe Translator do
       expect(translator.format_the_translation(translated_message)).to eq(expected_format)
     end
   end
+
+  describe '#revert_to_braille' do 
+    it 'reformats the output of braille, back to braille arrays to be translated to english' do 
+      translator = Translator.new
+      dictionary = Dictionary.new
+
+      translated_message = "0.0.00\n00.0.0\n....00"
+      expected = [["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]]
+
+      translator.revert_to_braille(translated_message)
+      expect(translator.back_to_braille).to eq(expected)
+    end
+  end
 end
