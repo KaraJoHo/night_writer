@@ -17,7 +17,7 @@ RSpec.describe NightReader do
       braille = "0.0.00\n00.0.0\n....00"
       expected = 'hey'
       
-      expect(night_reader.translate_to_english(message)).to eq(expected)
+      expect(night_reader.translate_to_english(braille)).to eq(expected)
     end
   end
 end
