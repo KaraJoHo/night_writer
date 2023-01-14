@@ -53,4 +53,13 @@ class Translator
     format_braille_arrays = turn_to_braille_arrays.map {|arr| arr.each_slice(2).to_a.map{|a| a.join}}
     @back_to_braille = format_braille_arrays
   end
+
+  def braille_to_eng(message)
+    reverted_to_braille_array = revert_to_braille(message)
+    reverted_to_braille_array.map do |br| 
+      if @english_characters.include?(br)
+       @english_characters[br]
+      end
+    end.join
+  end
 end
