@@ -21,4 +21,16 @@ class FileHub
     send_translated_to_file.close
   end
 
+  def read_braille_message 
+    message = File.read(ARGV[0])
+    puts "created #{ARGV[1]} containing #{message.chars.count} characters."
+    @reverted_to_english = @night_reader.translate_to_english(message)
+  end
+
+  def revert_message_create_original_text_file 
+    send_reverted_to_file = File.open(ARGV[1], "w")
+    send_reverted_to_file.write(@reverted_to_english)
+    send_reverted_to_file.close
+  end
+
 end

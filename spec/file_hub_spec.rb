@@ -66,7 +66,7 @@ RSpec.describe FileHub do
     end
   end
 
-  describe '#revert message create original text file' do 
+  describe '#revert_message_create_original_text_file' do 
     it 'translates braille back to english' do 
       message = 'orig_message.txt'
       content = "hey"
