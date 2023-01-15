@@ -16,9 +16,6 @@ RSpec.describe Translator do
 
   describe '#eng_to_braille' do 
     it 'take a string and translates it to braille' do 
-      # translator = Translator.new
-      # dictionary = Dictionary.new 
-
       string = 'hey'
 
       expected = [["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]]
@@ -38,8 +35,6 @@ RSpec.describe Translator do
 
   describe '#format_the_translation' do 
     it 'takes the set of braille characters and formats them into 2x3 output' do 
-      # translator = Translator.new
-      # dictionary = Dictionary.new
 
       translated_message = [["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]] 
       expected_format = "0.0.00\n00.0.0\n....00"                 
@@ -50,8 +45,6 @@ RSpec.describe Translator do
 
   describe '#revert_to_braille' do 
     it 'reformats the output of braille, back to braille arrays to be translated to english' do 
-      # translator = Translator.new
-      # dictionary = Dictionary.new
 
       translated_message = "0.0.00\n00.0.0\n....00"
       expected = [["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]]
@@ -63,8 +56,6 @@ RSpec.describe Translator do
 
   describe '#braille_to_eng' do 
     it 'translates the braille back to english characters' do 
-      # translator = Translator.new
-      # dictionary = Dictionary.new
 
       translated_message = "0.0.00\n00.0.0\n....00"
 
