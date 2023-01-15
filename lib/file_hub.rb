@@ -15,4 +15,10 @@ class FileHub
     @translated_to_braille = @night_writer.translate_to_braille(message)
   end
 
+  def translate_message_create_braille_file 
+    send_translated_to_file = File.open(ARGV[1], "w")
+    send_translated_to_file.write(@translated_to_braille)
+    send_translated_to_file.close
+  end
+
 end
