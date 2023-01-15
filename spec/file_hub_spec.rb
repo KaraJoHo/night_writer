@@ -12,4 +12,12 @@ RSpec.describe FileHub do
       expect(file_hub.translated_to_english).to eq("")
     end
   end
+
+  describe '#read_message' do 
+    it 'reads the message and translates english to braille' do 
+      message = double("Hey")
+      allow(file_hub.read_message).to receive(:message).and_return("0.0.00\n00.0.0\n....00")
+      expect(file_hub.read_message).to eq("0.0.00\n00.0.0\n....00")
+    end
+  end
 end
