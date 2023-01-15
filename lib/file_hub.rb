@@ -1,12 +1,12 @@
 class FileHub 
   attr_reader :night_writer, :night_reader, 
-              :translated_to_braille, :translated_to_english
+              :translated_to_braille, :reverted_to_english
 
   def initialize
     @night_writer = NightWriter.new 
     @night_reader = NightReader.new 
     @translated_to_braille = ""
-    @translated_to_english = ""
+    @reverted_to_english = ""
   end
 
   def read_message 
