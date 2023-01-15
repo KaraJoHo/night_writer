@@ -48,7 +48,7 @@ RSpec.describe FileHub do
     end
   end
 
-  describe '#read_braille' do 
+  describe '#read_braille_message' do 
     it 'reads the braille message to translate back to english' do 
       message = 'translated.txt'
       content = "0.0.00\n00.0.0\n....00"
@@ -63,6 +63,23 @@ RSpec.describe FileHub do
       allow(file_hub.night_reader).to receive(:translate_to_english).and_return(content)
   
       expect(file_hub.read_braille_message).to eq(content)
+    end
+  end
+
+  describe '#revert message create original text file' do 
+    it 'translates braille back to english' do 
+      message = 'orig_message.txt'
+      content = "hey"
+
+      allow(File).to receive(:open).with(message, 'w').and_yield(StringIO.new(content))
+      expect(StringIO.new(content).read).to eq(content)
+      result = ""
+      File.open('orig_message.txt', 'w') {|f| result = f.write}
+      
+      allow(file_hub).to receive(:revert_message_create_original_text_file).and_return("hey")
+  
+      expect(file_hub.revert_message_create_original_text_file).to eq("hey")
+      expect(content.chars.count).to eq(3)
     end
   end
 end
