@@ -15,8 +15,17 @@ RSpec.describe FileHub do
 
   describe '#read_message' do 
     it 'reads the message and translates english to braille' do 
-      message = double("Hey")
-      allow(file_hub.read_message).to receive(:message).and_return("0.0.00\n00.0.0\n....00")
+      message = 'a_message.txt'
+      content = 'Hey'
+      allow(File).to receive(:open).with(message, 'r').and_yield(StringIO.new(content))
+      expect(StringIO.new(content).read).to eq(content)
+
+      result = ""
+      File.open('a_message.txt', 'r') {|f| result = f.read}
+      expect(result).to eq(content)
+
+      allow(file_hub.night_writer).to receive(:translate_to_braille).and_return("0.0.00\n00.0.0\n....00")
+  
       expect(file_hub.read_message).to eq("0.0.00\n00.0.0\n....00")
     end
   end
