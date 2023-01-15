@@ -24,6 +24,25 @@ RSpec.describe FileHub do
       File.open('a_message.txt', 'r') {|f| result = f.read}
       expect(result).to eq(content)
 
+      # allow(file_hub.night_writer).to receive(:translate_to_braille).and_return("0.0.00\n00.0.0\n....00")
+  
+      # expect(file_hub.read_message).to eq("0.0.00\n00.0.0\n....00")
+      allow(file_hub.night_writer).to receive(:translate_to_braille).and_return(content)
+  
+      expect(file_hub.read_message).to eq(content)
+    end
+  end
+
+  describe '#translate_message_create_braille_file' do 
+    it 'translates the message and creates a braille txt file' do 
+      message = 'translated.txt'
+      content = "0.0.00\n00.0.0\n....00"
+
+      allow(File).to receive(:open).with(message, 'w').and_yield(StringIO.new(content))
+      expect(StringIO.new(content).read).to eq(content)
+      result = ""
+      File.open('translated.txt', 'w') {|f| result = f.write}
+      
       allow(file_hub.night_writer).to receive(:translate_to_braille).and_return("0.0.00\n00.0.0\n....00")
   
       expect(file_hub.read_message).to eq("0.0.00\n00.0.0\n....00")
