@@ -10,7 +10,7 @@ class Translator
   end
 
   def eng_to_braille(message)
-    message.chars.map do |char| 
+    message.downcase.chars.map do |char| 
       if @braille_characters.include?(char)
        @braille_characters[char]
       end
