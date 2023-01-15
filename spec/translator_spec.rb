@@ -30,6 +30,7 @@ RSpec.describe Translator do
 
       expect(translator.eng_to_braille(string)).to eq(expected)
     end
+     
 
   end
 
