@@ -6,6 +6,8 @@ RSpec.describe Dictionary do
   describe '#initialize' do 
     it 'exists' do 
       expect(dictionary).to be_a(Dictionary)
+      expect(dictionary.braille_dictionary).to eq(dictionary.braille_characters)
+      expect(dictionary.to_english).to eq(dictionary.english_characters)
     end
   end
 

@@ -30,6 +30,7 @@ RSpec.describe FileHub do
       expect(message.chars.count).to eq(3)
       expect(file_hub.read_message).to eq("0.0.00\n00.0.0\n....00")
       expect(file_hub.read_message.class).to eq(String)
+      expect {file_hub.read_message}.to output("created ./spec/fixtures/braille_translated.txt containing 3 characters.\n").to_stdout
     end
   end
 
@@ -64,9 +65,10 @@ RSpec.describe FileHub do
 
       new_file = ARGV[1]
       expect(new_file).to eq('./spec/fixtures/original.txt')
-
-      expect(file_hub.read_braille_message).to eq("hey")
-      expect(file_hub.read_braille_message.class).to eq(String)
+      
+     
+      expect {file_hub.read_braille_message}.to output("created ./spec/fixtures/original.txt containing 3 characters.\n").to_stdout
+      expect(file_hub.reverted_to_english).to eq("hey")
     end
   end
 
