@@ -47,12 +47,13 @@ class Translator
 
   def revert_to_braille(translated_message)
     remove_newline = translated_message.split("\n")
-    combine_to_split_string = remove_newline.join
-    chunks_of_three = remove_newline.each_slice(3).to_a
-    pairs = chunks_of_three.flat_map {|arr| arr.map {|s| s.chars.each_slice(2).to_a}.transpose}
-    turn_to_braille_arrays = pairs.map {|arr| arr.flatten(1)}
-    format_braille_arrays = turn_to_braille_arrays.map {|arr| arr.each_slice(2).to_a.map{|a| a.join}}
-    @back_to_braille = format_braille_arrays
+    @back_to_braille = revert_sequence(remove_newline)
+    # combine_to_split_string = remove_newline.join
+    # chunks_of_three = remove_newline.each_slice(3).to_a
+    # pairs = chunks_of_three.flat_map {|arr| arr.map {|s| s.chars.each_slice(2).to_a}.transpose}
+    # turn_to_braille_arrays = pairs.map {|arr| arr.flatten(1)}
+    # format_braille_arrays = turn_to_braille_arrays.map {|arr| arr.each_slice(2).to_a.map{|a| a.join}}
+    # @back_to_braille = format_braille_arrays
   end
 
   def braille_to_eng(message)
@@ -70,5 +71,13 @@ class Translator
     map_scan = splitted.map {|s| s.scan(/.{1,80}/).join("\n")}
     transposed_it = map_scan.map {|s| s.split("\n")}.transpose
     out_putted = transposed_it.map {|a| a.join("\n")}.join("\n")
+  end
+
+  def revert_sequence(string_without_newlines)
+    combine_to_split_string = string_without_newlines.join
+    chunks_of_three = string_without_newlines.each_slice(3).to_a
+    pairs = chunks_of_three.flat_map {|arr| arr.map {|s| s.chars.each_slice(2).to_a}.transpose}
+    turn_to_braille_arrays = pairs.map {|arr| arr.flatten(1)}
+    format_braille_arrays = turn_to_braille_arrays.map {|arr| arr.each_slice(2).to_a.map{|a| a.join}}
   end
 end
