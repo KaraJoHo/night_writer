@@ -37,11 +37,12 @@ class Translator
       @formatted_braille_string << line.join + "\n"
       break if count == 3
     end
-    @formatted_braille_string.rstrip
-    splitted = @formatted_braille_string.rstrip.split("\n")
-    map_scan = splitted.map {|s| s.scan(/.{1,80}/).join("\n")}
-    transposed_it = map_scan.map {|s| s.split("\n")}.transpose
-    out_putted = transposed_it.map {|a| a.join("\n")}.join("\n")
+    format_lines(@formatted_braille_string)
+    # @formatted_braille_string.rstrip
+    # splitted = @formatted_braille_string.rstrip.split("\n")
+    # map_scan = splitted.map {|s| s.scan(/.{1,80}/).join("\n")}
+    # transposed_it = map_scan.map {|s| s.split("\n")}.transpose
+    # out_putted = transposed_it.map {|a| a.join("\n")}.join("\n")
   end
 
   def revert_to_braille(translated_message)
@@ -63,5 +64,11 @@ class Translator
     end.join
   end
 
-  
+  def format_lines(translated)
+    translated.rstrip
+    splitted = translated.rstrip.split("\n")
+    map_scan = splitted.map {|s| s.scan(/.{1,80}/).join("\n")}
+    transposed_it = map_scan.map {|s| s.split("\n")}.transpose
+    out_putted = transposed_it.map {|a| a.join("\n")}.join("\n")
+  end
 end
