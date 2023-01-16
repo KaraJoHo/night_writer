@@ -63,4 +63,26 @@ RSpec.describe Translator do
       expect(translator.braille_to_eng(translated_message)).to eq('hey')
     end
   end
+
+  describe '#format_lines' do 
+    it 'formats the braille message and adds a line break if over 80 braille characters' do 
+      translated_message = "0.0.00\n00.0.0\n....00"
+      expect(translator.format_lines(translated_message)).to eq("0.0.00\n00.0.0\n....00")
+    end
+  end
+
+  describe '#revert_sequence' do 
+    it 'takes the translated braille string and reverts it back to english characters' do 
+      translated_message = ["0.0.00", "00.0.0", "....00"]
+      expect(translator.revert_sequence(translated_message)).to eq([["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]])
+    end
+  end
+
+  describe '#join_each_line_together' do 
+    it 'takes the array of lines and joins them into one string' do 
+      line_arrays = [[["0.", "0.", "00"], ["00", ".0", ".0"], ["..", "..", "00"]], [["0.", "0.", "00"], ["00", ".0", ".0"], ["..", "..", "00"]], [["0.", "0.", "00"], ["00", ".0", ".0"], ["..", "..", "00"]]]
+      counter = 0
+      expect(translator.join_each_line_together(line_arrays, counter)).to eq("0.0.00\n00.0.0\n....00\n")
+    end
+  end
 end
