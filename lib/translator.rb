@@ -31,12 +31,8 @@ class Translator
 
       format_arr << ([line_1, line_2, line_3])
     end
-
-    format_arr.flatten(1).each do |line|  
-      count += 1
-      @formatted_braille_string << line.join + "\n"
-      break if count == 3
-    end
+    
+    join_each_line_together(format_arr, count)
     format_lines(@formatted_braille_string)
   end
 
@@ -68,5 +64,14 @@ class Translator
     pairs = chunks_of_three.flat_map {|arr| arr.map {|s| s.chars.each_slice(2).to_a}.transpose}
     turn_to_braille_arrays = pairs.map {|arr| arr.flatten(1)}
     format_braille_arrays = turn_to_braille_arrays.map {|arr| arr.each_slice(2).to_a.map{|a| a.join}}
+  end
+
+  def join_each_line_together(line_arrays, counter)
+    line_arrays.flatten(1).each do |line|  
+      counter += 1
+      @formatted_braille_string << line.join + "\n"
+      break if counter == 3
+    end
+    @formatted_braille_string
   end
 end
