@@ -70,4 +70,11 @@ RSpec.describe Translator do
       expect(translator.format_lines(translated_message)).to eq("0.0.00\n00.0.0\n....00")
     end
   end
+
+  describe '#revert_sequence' do 
+    it 'takes the translated braille string and reverts it back to english characters' do 
+      translated_message = "0.0.0000.0.0....00" 
+      expect(revert_sequence("0.0.0000.0.0....00" )).to eq("hey")
+    end
+  end
 end
