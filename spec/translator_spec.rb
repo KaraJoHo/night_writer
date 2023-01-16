@@ -77,4 +77,11 @@ RSpec.describe Translator do
       expect(translator.revert_sequence(translated_message)).to eq([["0.", "00", ".."], ["0.", ".0", ".."], ["00", ".0", "00"]])
     end
   end
+
+  describe '#join_each_line_together' do 
+    it 'takes the array of lines and joins them into one string' do 
+      line_arrays = [["00"]]
+      expect(translator.join_each_line_together(line_arrays)).to eq("")
+    end
+  end
 end
