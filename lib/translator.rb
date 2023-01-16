@@ -62,4 +62,6 @@ class Translator
       end
     end.join
   end
+
+  
 end

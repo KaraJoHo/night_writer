@@ -63,4 +63,11 @@ RSpec.describe Translator do
       expect(translator.braille_to_eng(translated_message)).to eq('hey')
     end
   end
+
+  describe '#format_lines' do 
+    it 'formats the braille message and adds a line break if over 80 braille characters' do 
+      translated_message = "0.0.00\n00.0.0\n....00"
+      expect(translator.format_lines(translated_message)).to eq("0.0.00\n00.0.0\n....00")
+    end
+  end
 end
